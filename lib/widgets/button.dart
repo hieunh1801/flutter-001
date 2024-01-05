@@ -25,6 +25,7 @@ class Button extends StatelessWidget {
             color: AppColors.white,
           ),
         ),
+        disabledColor: AppColors.primaryColor.withOpacity(0.5),
       ),
     );
   }

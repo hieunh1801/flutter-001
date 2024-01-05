@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_001/screens/sign_up_screen.dart';
 import 'package:flutter_001/themes/app_colors.dart';
 import 'package:flutter_001/widgets/button.dart';
 import 'package:flutter_001/widgets/outline_button.dart';
@@ -16,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var emailTextField = CupertinoTextField(
       padding: const EdgeInsets.all(16.0),
-      obscureText: passwordObscureText,
       decoration: BoxDecoration(
         color: AppColors.gray01,
         borderRadius: BorderRadius.circular(8.0),
@@ -58,30 +58,32 @@ class _LoginScreenState extends State<LoginScreen> {
         },
       ),
     );
+    var cupertinoNavigationBar = const CupertinoNavigationBar(
+      middle: Text(
+        "Login",
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.w600,
+          color: AppColors.black,
+        ),
+      ),
+      backgroundColor: AppColors.white,
+      border: null,
+      padding: EdgeInsetsDirectional.zero,
+    );
     return CupertinoPageScaffold(
+      navigationBar: cupertinoNavigationBar,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 8.0,
-        ), // EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0), // EdgeInsets.all(8.0),
         child: Column(
           children: [
             const SizedBox(height: 18.0),
-            const Center(
-              child: Text(
-                'Log In',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.black,
-                ),
-              ),
-            ),
+            // const AppBar(title: "Login"),
             const SizedBox(height: 32.0),
             emailTextField,
             const SizedBox(height: 16.0),
             passwordTextField,
-            const Expanded(child: SizedBox(height: 32.0)),
+            Expanded(child: Container()),
             const SizedBox(
               height: 16.0,
             ),
@@ -89,12 +91,16 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 16.0,
             ),
-            SizedBox(
-              width: double.infinity,
-              child: OutlineButton(
-                title: 'Sign Up',
-                onPressed: () {},
-              ),
+            OutlineButton(
+              title: 'Sign Up',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => const SignUpScreen(),
+                  ),
+                );
+              },
             ),
             CupertinoButton(
               padding: EdgeInsets.zero,
